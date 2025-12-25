@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "New action map",
+            "id": "a4605cd5-1e91-4e4b-8aa1-090a3be1cb9a",
+            "actions": [
+                {
+                    "name": "OnShop",
+                    "type": "Button",
+                    "id": "85b9f081-73f8-4909-85d2-807f0ec66113",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6354b2dd-04b6-4293-9dec-4038be6396f1",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnShop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
