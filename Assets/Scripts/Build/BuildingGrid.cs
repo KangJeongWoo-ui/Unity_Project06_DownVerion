@@ -13,6 +13,32 @@ public class BuildingGrid : MonoBehaviour
 
     private BuildingGridCell[,] grid;     // 타일맵 2차원 배열
 
+    public class BuildingGridCell
+    {
+        // 배치 될 건물
+        private Building building;
+        public void SetBuilding(Building building)
+        {
+            this.building = building; 
+        }
+
+        // 타일 맵이 비어있는지 확인
+        public bool IsEmpty()
+        {
+            return building == null;
+        }
+        // 설치 위치가 길인지 확인
+        public bool IsRoad(Vector3 position, LayerMask layer)
+        {
+            Collider2D hit = Physics2D.OverlapCircle(
+                position,
+                0.5f,
+                layer
+            );
+
+            return hit != null;
+        }
+    }
 
     // 시작시 가로, 세로 비율로 타일맵 초기화
     private void Start()
@@ -56,21 +82,9 @@ public class BuildingGrid : MonoBehaviour
             if (!grid[x, y].IsEmpty()) return false;
 
             // 길이라면 건물 설치 불가
-            if (IsRoad(position)) return false;
+            if (grid[x, y].IsRoad(position, roadLayer)) return false;
         }
         return true;
-    }
-
-    // 설치 위치가 길인지 확인
-    private bool IsRoad(Vector3 position)
-    {
-        Collider2D hit = Physics2D.OverlapCircle(
-            position,
-            0.5f,
-            roadLayer
-        );
-
-        return hit != null;
     }
 
     // 월드 좌표값을 타일맵 좌표값으로 변환하는 함수
@@ -99,21 +113,6 @@ public class BuildingGrid : MonoBehaviour
             Vector3 start = origin + new Vector3(x * BuildingManager.CellSize, 0, 0);
             Vector3 end = origin + new Vector3(x * BuildingManager.CellSize, height * BuildingManager.CellSize, 0);
             Gizmos.DrawLine(start, end);
-        }
-    }
-    public class BuildingGridCell
-    {
-        // 배치 될 건물
-        private Building building;
-        public void SetBuilding(Building building)
-        {
-            this.building = building; 
-        }
-
-        // 타일 맵이 비어있는지 확인
-        public bool IsEmpty()
-        {
-            return building == null;
         }
     }
 }

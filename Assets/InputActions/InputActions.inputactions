@@ -3,7 +3,7 @@
     "name": "InputActions",
     "maps": [
         {
-            "name": "New action map",
+            "name": "KeySettings",
             "id": "a4605cd5-1e91-4e4b-8aa1-090a3be1cb9a",
             "actions": [
                 {

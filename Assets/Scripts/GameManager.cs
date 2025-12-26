@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
     {
         initialize();
     }
+    private void Update()
+    {
+        OnShop();
+    }
     private void initialize()
     {
         Hp = hp;
@@ -55,11 +59,21 @@ public class GameManager : MonoBehaviour
         KilledEnemy += amount;
         UpdateKilledEnemy?.Invoke(KilledEnemy);
     }
-    public void OnShop(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
 
-        isShopOpen = !isShopOpen;
-        shapUI.OpenShopUI(isShopOpen);
+    //public void OnShop(InputAction.CallbackContext context)
+    //{
+    //    if (!context.performed) return;
+    //
+    //    isShopOpen = !isShopOpen;
+    //    shapUI.OpenShopUI(isShopOpen);
+    //}
+
+    private void OnShop()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            isShopOpen = !isShopOpen;
+            shapUI.OpenShopUI(isShopOpen);
+        }
     }
 }
